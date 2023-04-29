@@ -16,6 +16,30 @@ class StateComponent extends Component {
             }
         ]
     }
+
+    changeClassBookState = () => {
+
+        this.setState({
+            books: [
+                {
+                    id: 1,
+                    bookName: 'book1',
+                    writer: 'Shahriar'
+                },
+                {
+                    id: 2,
+                    bookName: 'book3',
+                    writer: 'Shahriar Hosen'
+                },
+                {
+                    id: 3,
+                    bookName: 'book3',
+                    writer: 'Shahriar Hosen'
+                }
+            ]
+        });
+    }
+
     render() {
         return (
             <div>
@@ -29,6 +53,7 @@ class StateComponent extends Component {
                         );
                     })
                 }
+                <button onClick={this.changeClassBookState}>Change State</button>
             </div>
         );
     }
