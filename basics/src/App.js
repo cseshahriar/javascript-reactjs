@@ -51,8 +51,8 @@ function App() {
           </DynamicComponent>
 
           {/* books component information */}
-          <Book bookName='1984' writer='George Orwell' />
-          <Book bookName='The Da vinci Code' writer='George Orwell' />
+          <h3>State change with event </h3>
+          <Book />
 
           <h3>State component</h3>
           <StateComponent/>
