@@ -1,64 +1,35 @@
-import './App.css';
-
-import Person from "./components/Person";
-import PersonClass from "./components/PersonClass";
-import DynamicComponent from "./components/DynamicComponent";
 import Book from "./components/Book";
-import StateComponent from "./components/StateComponent";
+import {Component} from "react";
+import './App.css';;
 
-function App() {
-    // data
-    const persons = [
-        {
-            id: 1,
-            name: 'Shahriar',
-            age: 28,
-        },
-        {
-            id:2,
-            name: 'Shorna',
-            age: 23,
-        }
-    ]
+class App extends Component{
+    state = {
+        books: [
+            { id: 1, bookName: 'book1', writer: 'Shahriar'},
+            {id: 2, bookName: 'book3', writer: 'Shahriar Hosen'},
+            {id: 3, bookName: 'book3', writer: 'Shahriar Hosen'}
+        ]
+    }
+    changeBookState = () => {
+        this.setState({
+            books: [
+                { id: 1, bookName: 'book1 name change', writer: 'Shahriar'},
+                {id: 2, bookName: 'book3', writer: 'Shahriar Hosen'},
+                {id: 3, bookName: 'book3', writer: 'Shahriar Hosen'}
+            ]
+        })
+    }
 
-    // state or component information
-    // state is class component property
-
-  return (
-    <div className="App">
-      <header className="App-header">
-          <h3>Component with map</h3>
-          {
-              persons.map((person) => {
-                  return <Person {...person} />
-              })
-          }
-
-          {
-              persons.map((person) => {
-                  return <PersonClass {...person} />
-              })
-          }
-
-          <h3>Dynamic component</h3>
-          {/* dynamic component, can pass a child compoennt */}
-          <DynamicComponent>
-              {
-                  persons.map((person) => {
-                      return <PersonClass {...person} />
-                  })
-              }
-          </DynamicComponent>
-
-          {/* books component information */}
-          <h3>State change with event </h3>
-          <Book />
-
-          <h3>State component</h3>
-          <StateComponent/>
-      </header>
-    </div>
-  );
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <h3>State change with event and pass a method with props</h3>
+                    <Book data={this.state.books} change={this.changeBookState} />
+                </header>
+            </div>
+        );
+    }
 }
 
 export default App;
