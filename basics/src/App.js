@@ -1,7 +1,7 @@
 import './App.css';
 
 import Person from "./components/Person";
-
+import PersonClass from "./components/PersonClass";
 function App() {
     // data
     const persons = [
@@ -25,6 +25,13 @@ function App() {
                   return <Person {...person} />
               })
           }
+
+          {
+              persons.map((person) => {
+                  return <PersonClass {...person} />
+              })
+          }
+
       </header>
     </div>
   );
