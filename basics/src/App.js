@@ -4,6 +4,7 @@ import Person from "./components/Person";
 import PersonClass from "./components/PersonClass";
 import DynamicComponent from "./components/DynamicComponent";
 import Book from "./components/Book";
+import StateComponent from "./components/StateComponent";
 
 function App() {
     // data
@@ -19,6 +20,9 @@ function App() {
             age: 23,
         }
     ]
+
+    // state or component information
+    // state is class component property
 
   return (
     <div className="App">
@@ -49,6 +53,9 @@ function App() {
           {/* books component information */}
           <Book bookName='1984' writer='George Orwell' />
           <Book bookName='The Da vinci Code' writer='George Orwell' />
+
+          <h3>State component</h3>
+          <StateComponent/>
       </header>
     </div>
   );
