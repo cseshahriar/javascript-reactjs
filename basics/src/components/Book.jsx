@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
-import {useState} from "react";
+import React, { useEffect } from 'react';
+import '../stylesheets/Books.css';
 
 const Book = props => {
     console.log(props)
 
     return (
-        <div>
+        <div className='Book'>
             {
                 props.data.map((book) => (
                     <div className='person' key={book.id}>

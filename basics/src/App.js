@@ -28,13 +28,21 @@ class App extends Component{
     }
 
     render() {
+        const headerStyle = {
+            border: "2px solid green",
+            borderRadius: "5px",
+            backgroundColor: "#0000FF",
+            color: "white",
+            padding: '10px'
+        };
+
         return (
             <div className="App">
                 <header className="App-header">
-                    <h3>State change with event and pass a method with props</h3>
+                    <h3 style={headerStyle}>State change with event and pass a method with props</h3>
                     <Book data={this.state.books} change={this.changeBookState} />
 
-                    <h1>Input Change</h1>
+                    <h3>Input Change</h3>
                     <p>{ this.state.text }</p>
                     <input type='text' name='text' id='text' onChange={this.changeInputWithState} />
                 </header>
