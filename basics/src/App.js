@@ -3,6 +3,7 @@ import './App.css';
 import Person from "./components/Person";
 import PersonClass from "./components/PersonClass";
 import DynamicComponent from "./components/DynamicComponent";
+import Book from "./components/Book";
 
 function App() {
     // data
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+          <h3>Component with map</h3>
           {
               persons.map((person) => {
                   return <Person {...person} />
@@ -34,16 +36,19 @@ function App() {
               })
           }
 
+          <h3>Dynamic component</h3>
+          {/* dynamic component, can pass a child compoennt */}
           <DynamicComponent>
-              <div className='box'>
-                  <h1>Children</h1>
-                  <div className='person'>
-                      <h1>Name: Shahriar hosen</h1>
-                      <p>Age: 28</p>
-                  </div>
-              </div>
+              {
+                  persons.map((person) => {
+                      return <PersonClass {...person} />
+                  })
+              }
           </DynamicComponent>
 
+          {/* books component information */}
+          <Book bookName='1984' writer='George Orwell' />
+          <Book bookName='The Da vinci Code' writer='George Orwell' />
       </header>
     </div>
   );
