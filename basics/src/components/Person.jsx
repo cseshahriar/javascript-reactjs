@@ -1,6 +1,6 @@
 import React from 'react';
 
-// function component
+// function component and static component
 const Person = ({name, age}) => {
     return (
         <div className='person'>
