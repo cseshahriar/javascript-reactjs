@@ -1,12 +1,12 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
+import Context from "../context/Context";
 const Calculation = ({value, tasks}) => {
-    const multiplication = value * 10;
+    const data = useContext(Context);
     return (
         <div>
-            Value * 10 in Calculation component - {multiplication} <br/>
+            Calculation component value - {data.value} <br/>
             <ul>
-                { tasks.map((item) => (
+                { data.tasks.map((item) => (
                     <li key={item}>{item}</li>
                 ))}
             </ul>

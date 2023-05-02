@@ -1,11 +1,11 @@
-import React from 'react';
-import Calculation from "./Calculation";
-const Value = (props) => {
-    const {value, tasks } = props;
+import React, {useContext} from 'react';
+import Context from "../context/Context";
+
+const Value = () => {
+    const data = useContext(Context);
     return (
         <div>
-            <h2>Value Component: {value}</h2>
-            <Calculation value={value} tasks={tasks} />
+            <h2>Value Component: {data.value}</h2>
         </div>
     );
 };
