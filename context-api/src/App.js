@@ -15,8 +15,9 @@ function App() {
         ]
     });
 
-  return (
-      <Context.Provider value={data}>
+
+    return (
+      <Context.Provider value={{state:data, setData}}>
           <div className="App">
               <header className="App-header">
                   <h2>Context API</h2>
@@ -25,7 +26,7 @@ function App() {
               </header>
           </div>
       </Context.Provider>
-  );
+    );
 }
 
 export default App;
