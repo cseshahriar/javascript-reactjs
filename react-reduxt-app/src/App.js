@@ -1,13 +1,27 @@
 import {Container, Nav, Navbar, NavDropdown, Form, FormControl, Button, Table} from "react-bootstrap";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
+  // state
   const [isCreateMode, setIsCreateMode] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
+  // component did mount
+  useEffect(() => {
+      // api call and set tasks data
+      const data = [
+          {id: 1, title: 'First Title', description: 'First Description', priority: 'low'},
+          {id: 2, title: 'Second Title', description: 'Second Description', priority: 'low'},
+      ]
+      setTasks(data);
+  }, []); // dependency
+
+   // methods
   const updateCreateMode = () => {
       setIsCreateMode(true);
   }
 
+  // component return
   return (
     <div className="App">
         {/* navbar */}
@@ -82,6 +96,7 @@ function App() {
                 <div className='clearfix'></div>
             </div>
 
+            {/* data list */}
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -93,17 +108,20 @@ function App() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>title</td>
-                    <td>description</td>
-                    <td>priority</td>
-                    <td>
-                        <a href='#' className='btn btn-info btn-sm' title='Edit Task'><i className='fa fa-pencil' /> </a>
-                        <a href='#' className='btn btn-danger btn-sm ms-2' title='Delete Task'><i className='fa fa-trash'/> </a>
-                    </td>
-                </tr>
-
+                {
+                    tasks && tasks.map((task, index) => (
+                        <tr key={task.id}>
+                            <td>{ index + 1 }</td>
+                            <td>{ task.title }</td>
+                            <td>{ task.description }</td>
+                            <td>{ task.priority }</td>
+                            <td>
+                                <a href='#' className='btn btn-info btn-sm' title='Edit Task'><i className='fa fa-pencil' /> </a>
+                                <a href='#' className='btn btn-danger btn-sm ms-2' title='Delete Task'><i className='fa fa-trash'/> </a>
+                            </td>
+                        </tr>
+                    ))
+                }
                 </tbody>
             </Table>
         </Container>
