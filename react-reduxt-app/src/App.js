@@ -6,6 +6,10 @@ function App() {
   const [isCreateMode, setIsCreateMode] = useState(false);
   const [tasks, setTasks] = useState([]);
 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState('');
+
   // component did mount
   useEffect(() => {
       // api call and set tasks data
@@ -19,6 +23,19 @@ function App() {
    // methods
   const updateCreateMode = () => {
       setIsCreateMode(true);
+  }
+
+  const createTask = (e) => {
+      e.preventDefault();
+      const taskItem = {
+          id: 100,
+          title: title,
+          description: description,
+          priority: priority
+      }
+      const taskItems = taskItem;
+      taskItems.push(taskItem);
+      setTasks(taskItems);
   }
 
   // component return
@@ -56,26 +73,28 @@ function App() {
             {/* task create form */}
             {
                 isCreateMode === true ? (
-                    <Form>
+                    <Form onSubmit={(e) => createTask(e)}>
                         <h3>New Task</h3>
-                        <Form.Group className="mb-3" controlId="title">
-                            <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder="Title" name='title' id='title' />
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor='title'>Title</Form.Label>
+                            <Form.Control type="text" placeholder="Title" name='title' value={title} onChange={(e) => setTitle(e.target.value)} />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="description">
-                            <Form.Label>Description</Form.Label>
-                            <Form.Control as='textarea' rows={3} placeholder="Description" name='description' id='description' />
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor='description'>Description</Form.Label>
+                            <Form.Control as='textarea' rows={3} placeholder="Description" name='description' id='description' value={description} onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label htmlFor="priority">Priority</Form.Label>
-                            <Form.Select id="priority" name='priority'>
+                            <select name='priority'
+                                    value={priority}
+                                    onChange={(e) => setPriority(e.target.value)}>
                                 <option value={''}>Select Task Priority</option>
                                 <option value={'low'}>Low</option>
                                 <option value={'medium'}>Medium</option>
                                 <option value={'high'}>High</option>
-                            </Form.Select>
+                            </select>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">
