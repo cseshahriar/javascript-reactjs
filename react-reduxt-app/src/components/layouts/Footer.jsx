@@ -3,9 +3,9 @@ import {Button, Container, Form, Nav, Navbar} from "react-bootstrap";
 
 const Footer = () => {
     return (
-        <Container fluid>
-           <h3  className='text-center'>Copyright &copy Shosen.com. All right reserved.</h3>
-        </Container>
+        <div className='bg-default'>
+            <p className='text-center'>&copy; all right reserved.</p>
+        </div>
     );
 };
 
