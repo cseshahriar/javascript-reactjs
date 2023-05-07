@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Container, Form, Nav, Navbar} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -13,9 +14,10 @@ const Header = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
-                        <Nav.Link href="#action2">Task List</Nav.Link>
+                        <Link to='/' className='nav-link'>Home</Link>
+                        <Link to='/' className='nav-link'>Task List</Link>
                     </Nav>
+
                     <Form className="d-flex">
                         <Form.Control
                             type="search"
