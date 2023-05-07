@@ -9,16 +9,9 @@ function App() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('');
+  const [isAdded, setIsAdded] = useState(false);
 
-  // component did mount
-  useEffect(() => {
-      // api call and set tasks data
-      const data = [
-          {id: 1, title: 'First Title', description: 'First Description', priority: 'low'},
-          {id: 2, title: 'Second Title', description: 'Second Description', priority: 'low'},
-      ]
-      setTasks(data);
-  }, []); // dependency
+
 
    // methods
   const updateCreateMode = () => {
@@ -29,14 +22,24 @@ function App() {
       e.preventDefault();
       const taskItem = {
           id: 100,
-          title: title,
-          description: description,
-          priority: priority
+          title,
+          description,
+          priority
       }
-      const taskItems = taskItem;
-      taskItems.push(taskItem);
-      setTasks(taskItems);
+      const tasksData = tasks;
+      tasksData.push(taskItem);
+      setTasks(tasksData);
+
+      setIsAdded(true);
   }
+
+    // component did mount
+    useEffect(() => {
+        setTitle('');
+        setDescription('');
+        setPriority('');
+
+    }, [isAdded, ]); // dependency
 
   // component return
   return (
