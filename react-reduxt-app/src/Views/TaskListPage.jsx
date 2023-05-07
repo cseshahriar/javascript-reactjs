@@ -4,14 +4,11 @@ import {useEffect, useState} from "react";
 
 // import component
 import Layout from "../components/layouts/Layout";
-import Header from "../components/layouts/Header";
-import Footer from "../components/layouts/Footer";
 import TaskCreate from "../components/tasks/TaskCreate";
 import TaskList from "../components/tasks/TaskList";
 
 // import third party
 import {Container} from "react-bootstrap";
-import { Routes, Route } from "react-router-dom"
 
 const TaskListPage = () => {
     // state
@@ -68,12 +65,12 @@ const TaskListPage = () => {
         <div className="App">
             {/* navbar */}
             <Layout>
-                {/* content body */}
-                <Container className='py-5'>
+
                     {/* task create form */}
                     {
                         isCreateMode === true ? (
                             <TaskCreate
+                                isAdded={isAdded}
                                 createTask={createTask}
                                 title={title}
                                 setTitle={(val) => setTitle(val)}
@@ -87,7 +84,6 @@ const TaskListPage = () => {
 
                     {/* component include */}
                     <TaskList data={tasks} setIsCreateMode={setIsCreateMode} />
-                </Container>
             </Layout>
         </div>
     );

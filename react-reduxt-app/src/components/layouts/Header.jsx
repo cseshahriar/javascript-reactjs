@@ -15,7 +15,7 @@ const Header = () => {
                         navbarScroll
                     >
                         <Link to='/' className='nav-link'>Home</Link>
-                        <Link to='/' className='nav-link'>Task List</Link>
+                        <Link to='/about' className='nav-link'>About</Link>
                     </Nav>
 
                     <Form className="d-flex">

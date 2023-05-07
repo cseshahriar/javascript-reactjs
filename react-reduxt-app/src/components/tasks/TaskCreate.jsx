@@ -3,6 +3,7 @@ import {Button, Form} from "react-bootstrap";
 
 const TaskCreate = (props) => {
     const {
+        isAdded,
         createTask,
         title,
         setTitle,
