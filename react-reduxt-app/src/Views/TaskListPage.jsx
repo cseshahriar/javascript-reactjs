@@ -7,9 +7,8 @@ import TaskCreate from "../components/tasks/TaskCreate";
 import TaskList from "../components/tasks/TaskList";
 
 // import third party
-import {Container} from "react-bootstrap";
 import axios from "axios";
-import {getTodosData} from "../services/TaskService";
+import {getTodoData, createTodoData} from "../services/TaskService";
 
 const TaskListPage = () => {
     // state
@@ -17,15 +16,18 @@ const TaskListPage = () => {
     const [isCreateMode, setIsCreateMode] = useState(false);
 
     const [title, setTitle] = useState('');
+    const [priority, setPriority] = useState('');
+    const [description, setDescription] = useState('');
     const [isAdded, setIsAdded] = useState(false);
+
 
     // methods
     const initializeData = async () => {
-        const data = await getTodosData();
-        console.log(data);
+        const data = await getTodoData();
         setTasks(data)
     }
 
+    // create task
     const createTask = (e) => {
         e.preventDefault();
 
@@ -34,22 +36,37 @@ const TaskListPage = () => {
             alert("Please give a title !");
             return false;
         }
-        const taskItem = {
-            id: 100,
-            title,
+        if (description.length === 0) {
+            alert("Please give a description !");
+            return false;
         }
-        const tasksData = tasks;
-        tasksData.unshift(taskItem);
-        setTasks(tasksData);
-        setIsAdded(true);
+        if (priority.length === 0) {
+            alert("Please give a priority !");
+            return false;
+        }
+
+        const taskItem = {
+            title,
+            description,
+            priority
+        }
+        // call post api
+        createTodoData(taskItem);
+     
         // form reset
         setTitle('');
+        setDescription('');
+        setPriority('');
+
+        // call get api
+        initializeData();
+        setIsAdded(true);
     }
 
     // component did mount
     useEffect(() => {
         initializeData();
-    }, []); // dependency
+    }, [isAdded, ]); // dependency
 
     // component return
     return (
@@ -65,6 +82,10 @@ const TaskListPage = () => {
                                 createTask={createTask}
                                 title={title}
                                 setTitle={(val) => setTitle(val)}
+                                description={description}
+                                setDescription={(val) => setDescription(val)}
+                                priority={priority}
+                                setPriority={setPriority}
                             />
                         ) : null
                     }
