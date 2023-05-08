@@ -1,7 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from "react";
 
-
 // import component
 import Layout from "../components/layouts/Layout";
 import TaskCreate from "../components/tasks/TaskCreate";
@@ -9,6 +8,8 @@ import TaskList from "../components/tasks/TaskList";
 
 // import third party
 import {Container} from "react-bootstrap";
+import axios from "axios";
+import {getTodosData} from "../services/TaskService";
 
 const TaskListPage = () => {
     // state
@@ -16,11 +17,15 @@ const TaskListPage = () => {
     const [isCreateMode, setIsCreateMode] = useState(false);
 
     const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [priority, setPriority] = useState('');
     const [isAdded, setIsAdded] = useState(false);
 
     // methods
+    const initializeData = async () => {
+        const data = await getTodosData();
+        console.log(data);
+        setTasks(data)
+    }
+
     const createTask = (e) => {
         e.preventDefault();
 
@@ -29,20 +34,9 @@ const TaskListPage = () => {
             alert("Please give a title !");
             return false;
         }
-        if (description.length === 0) {
-            alert("Please give a description !");
-            return false;
-        }
-        if (priority.length === 0) {
-            alert("Please give a description !");
-            return false;
-        }
-
         const taskItem = {
             id: 100,
             title,
-            description,
-            priority
         }
         const tasksData = tasks;
         tasksData.unshift(taskItem);
@@ -50,14 +44,11 @@ const TaskListPage = () => {
         setIsAdded(true);
         // form reset
         setTitle('');
-        setDescription('');
-        setPriority('');
     }
 
     // component did mount
     useEffect(() => {
-        const data = []
-        setTasks(data);
+        initializeData();
     }, []); // dependency
 
     // component return
@@ -74,10 +65,6 @@ const TaskListPage = () => {
                                 createTask={createTask}
                                 title={title}
                                 setTitle={(val) => setTitle(val)}
-                                description={description}
-                                setDescription={(val) => setDescription(val)}
-                                priority={priority}
-                                setPriority={(val) => setPriority(val)}
                             />
                         ) : null
                     }

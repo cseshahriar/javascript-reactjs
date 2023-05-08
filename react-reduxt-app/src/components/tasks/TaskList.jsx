@@ -26,8 +26,6 @@ const TaskList = (props) => {
                 <tr>
                     <th>#</th>
                     <th>Task Title</th>
-                    <th>Description</th>
-                    <th>Priority</th>
                     <th>Action</th>
                 </tr>
                 </thead>
