@@ -8,7 +8,7 @@ import TaskList from "../components/tasks/TaskList";
 
 // import third party
 import axios from "axios";
-import {getTodoData, createTodoData} from "../services/TaskService";
+import {getTodoData, storeTodoData} from "../services/TaskService";
 
 const TaskListPage = () => {
     // state
@@ -20,7 +20,6 @@ const TaskListPage = () => {
     const [description, setDescription] = useState('');
     const [isAdded, setIsAdded] = useState(false);
 
-
     // methods
     const initializeData = async () => {
         const data = await getTodoData();
@@ -28,7 +27,7 @@ const TaskListPage = () => {
     }
 
     // create task
-    const createTask = (e) => {
+    const createTask = async (e) => {
         e.preventDefault();
 
         // validations
@@ -51,22 +50,20 @@ const TaskListPage = () => {
             priority
         }
         // call post api
-        createTodoData(taskItem);
-     
-        // form reset
-        setTitle('');
-        setDescription('');
-        setPriority('');
-
-        // call get api
-        initializeData();
-        setIsAdded(true);
+        const isAdded =  await storeTodoData(taskItem);
+        if(isAdded) {
+            // form reset
+            setTitle('');
+            setDescription('');
+            setPriority('');
+            initializeData();
+        }
     }
 
     // component did mount
     useEffect(() => {
         initializeData();
-    }, [isAdded, ]); // dependency
+    }, []); // dependency
 
     // component return
     return (

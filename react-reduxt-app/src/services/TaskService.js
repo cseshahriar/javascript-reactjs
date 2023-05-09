@@ -11,11 +11,17 @@ export const getTodoData = async () => {
     return data;
 }
 
-export const createTodoData = async (todo) => {
+{/**
+ * Stone New Todo Data to database
+ * @param { Object } todoData
+ */
+ }
+export const storeTodoData = async (todo) => {
+    let isAdded = false;
     await axios.post("http://127.0.0.1:8000/api/todos/", todo)
         .then(response => {
-            console.log('crete todo', response.data)
-            return response.data;
+            isAdded = response.data;
         })
         .catch(err=> {return err.message});
+    return isAdded;
 }
