@@ -23,6 +23,8 @@ const TaskListPage = () => {
     // methods
     const initializeData = async () => {
         const data = await getTodoData();
+        data.sort();
+        data.reverse();
         setTasks(data)
     }
 
@@ -57,6 +59,8 @@ const TaskListPage = () => {
             setDescription('');
             setPriority('');
             initializeData();
+        } else {
+            alert('Something went wrong !!');
         }
     }
 
