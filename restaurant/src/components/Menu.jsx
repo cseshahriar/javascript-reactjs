@@ -3,7 +3,24 @@ import DISHES from '../data/dishes.js';
 import COMMENTS from '../data/comments.js';
 import MenuItem from './MenuItem';
 import DishDetail from './DishDetail';
-import { CardColumns, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { CardColumns, CardGroup, Card, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
+import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
+import {connect} from "react-redux";
+import * as actionTypes from "../redux/actionTypes";
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addComment: (dishId, rating, author, comment) => dispatch({
+            type: actionTypes.ADD_COMMENT,
+            payload: {
+                dishId: dishId,
+                author: author,
+                rating: rating,
+                comment: comment
+            }
+        })
+    }
+}
 
 class Menu extends Component {
 
@@ -27,7 +44,6 @@ class Menu extends Component {
         })
     }
 
-    
     render() {
         console.log('menu props', this.state.comments);
 
@@ -54,10 +70,9 @@ class Menu extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <CardColumns>
-                        { menu }
-                    </CardColumns>
-                  
+
+                    {menu}
+
                     <Modal isOpen={this.state.modalOpen}>
                         <ModalBody>
                             {dishDetail}
@@ -74,4 +89,4 @@ class Menu extends Component {
     }
 }
 
-export default Menu;
+export default connect(mapDispatchToProps)(Menu);

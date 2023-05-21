@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardBody, CardTitle } from 'reactstrap';
+import { CardGroup, Card, CardImg, CardImgOverlay, CardBody, CardTitle } from 'reactstrap';
 
 const MenuItem = props => {
     console.log(props);
     return (
-        <div>
+        <div className='col'>
             <Card style={{ margin: "10px" }}>
                 <CardBody>
                     <CardImg

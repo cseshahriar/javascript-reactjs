@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import Menu from './Menu';
 
 class Home extends Component {
-  
-    componentDidMount() {
-        document.title = "Home Page";
-    }
 
     render() {
+
+        document.title = "Restaurant"
+
         return (
             <div>
                <Menu />

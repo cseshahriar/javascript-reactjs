@@ -4,10 +4,12 @@ import COMMENTS from '../data/comments';
 import { combineReducers } from 'redux';
 import * as actionTypes from './actionTypes';
 
+
+// state, action
 const dishReducer = (dishState = DISHES, action) => {
     switch (action.type) {
         default:
-            return dishState;
+            return dishState; // return dish data
     }
 }
 
@@ -27,6 +29,7 @@ const commentReducer = (commentState = COMMENTS, action) => {
 
 }
 
+// multiple reducer
 export const Reducer = combineReducers({
     dishes: dishReducer,
     comments: commentReducer

@@ -1,41 +1,64 @@
 import React, { Component } from 'react';
 import { Form, Button, Input } from 'reactstrap';
+import { connect } from "react-redux";
+import dishes from "../data/dishes";
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addComment: (dishId, rating, author, comment) => dispatch({
+            type:'ADD_COMMENT',
+            payload: {
+                dishId: dishId,
+                author: author,
+                rating: rating,
+                comment: comment
+            }
+        })
+    }
+}
 
 class CommentForm extends Component {
 
+    // constructor
     constructor(props) {
         super(props);
-
         this.state = {
             author: '',
             rating: '',
             comment: ''
         }
-
         this.handleInputChange = this.handleInputChange.bind(this);
-        
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // handle input change
     handleInputChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
 
+    // handle submit
     handleSubmit = event => {
-        this.props.addComment(this.props.dishId, this.state.rating, this.state.author, this.state.comment);
+        this.props.addComment(
+            this.props.dishId,
+            this.state.rating,
+            this.state.author,
+            this.state.comment
+        );
 
         this.setState({
             author: '',
             rating: '',
             comment: ''
         });
-
         event.preventDefault();
     }
 
     render() {
+
+        console.log('comment form props', this.props);
+
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
@@ -78,4 +101,4 @@ class CommentForm extends Component {
     }
 }
 
-export default CommentForm;
+export default connect(null, mapDispatchToProps)(CommentForm);
