@@ -2,8 +2,10 @@ import React from 'react';
 import dateFormat from 'dateformat';
 
 const LoadComments = props => {
+    console.log(props);
+    
     return (
-        props.comments.map(comment => {
+        props.comments && props.comments.map(comment => {
             return (
                 <div key={comment.id}>
                     <h5>{comment.author}</h5>

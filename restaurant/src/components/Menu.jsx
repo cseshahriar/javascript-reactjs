@@ -6,6 +6,7 @@ import DishDetail from './DishDetail';
 import { CardColumns, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 class Menu extends Component {
+
     state = {
         dishes: DISHES,
         comments: COMMENTS,
@@ -26,7 +27,10 @@ class Menu extends Component {
         })
     }
 
+    
     render() {
+        console.log('menu props', this.state.comments);
+
         const menu = this.state.dishes.map(item => {
             return (
                  <MenuItem
@@ -39,15 +43,12 @@ class Menu extends Component {
 
         let dishDetail = null;
         if (this.state.selectedDish != null) {
-            const comments = this.props.comments.comments.filter(
-                comment => comment.dishId === this.state.selectedDish.id
-            )
+            const comments = this.state.comments.filter(comment => comment.dishId === this.state.selectedDish.id)
 
             dishDetail = <DishDetail
                 dish={this.state.selectedDish}
                 comments={comments}
-                addComment={this.props.addComment}
-                commentsIsLoading={this.props.comments.isLoading} />
+                addComment={this.props.addComment} />
         }
 
         return (
@@ -57,7 +58,7 @@ class Menu extends Component {
                         { menu }
                     </CardColumns>
                   
-                    <Modal isOpen={this.state.modalOpen} onClick={this.toggleModal}>
+                    <Modal isOpen={this.state.modalOpen}>
                         <ModalBody>
                             {dishDetail}
                         </ModalBody>
