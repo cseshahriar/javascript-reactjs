@@ -6,6 +6,8 @@ import About from './About';
 import { Routes, Route } from 'react-router-dom';
 
 const Body = () => {
+    document.title = "About";
+
     return (
         <div>
             <Routes>
