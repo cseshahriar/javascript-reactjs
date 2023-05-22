@@ -56,9 +56,6 @@ class CommentForm extends Component {
     }
 
     render() {
-
-        console.log('comment form props', this.props);
-
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>

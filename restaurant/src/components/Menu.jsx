@@ -4,23 +4,25 @@ import COMMENTS from '../data/comments.js';
 import MenuItem from './MenuItem';
 import DishDetail from './DishDetail';
 import { CardColumns, CardGroup, Card, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
-import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import * as actionTypes from "../redux/actionTypes";
+import * as actionCreate from '../redux/actionCreator';
+
+const mapStateToProps = state => {
+    return {
+        dishes: state.dishes,
+        comments: state.comments
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
-        addComment: (dishId, rating, author, comment) => dispatch({
-            type: actionTypes.ADD_COMMENT,
-            payload: {
-                dishId: dishId,
-                author: author,
-                rating: rating,
-                comment: comment
-            }
-        })
+        addComment: (dishId, rating, author, comment) => dispatch(
+            actionCreate.addComment(dishId, rating, author, comment)
+        )
     }
 }
+
 
 class Menu extends Component {
 
@@ -45,8 +47,6 @@ class Menu extends Component {
     }
 
     render() {
-        console.log('menu props', this.state.comments);
-
         const menu = this.state.dishes.map(item => {
             return (
                  <MenuItem
@@ -70,9 +70,7 @@ class Menu extends Component {
         return (
             <div className="container">
                 <div className="row">
-
                     {menu}
-
                     <Modal isOpen={this.state.modalOpen}>
                         <ModalBody>
                             {dishDetail}

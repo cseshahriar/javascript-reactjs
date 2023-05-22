@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap'
 
 class Contact extends Component {
-    
     componentDidMount() {
         document.title = "Contact Page";
     }
@@ -31,7 +30,6 @@ class Contact extends Component {
     }
 
     handleSubmit = event => {
-        console.log(this.state);
         event.preventDefault();
     }
 
