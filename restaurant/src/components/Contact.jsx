@@ -25,6 +25,7 @@ class Contact extends Component {
                                 <Label htmlFor="firstname" md={2}>First Name</Label>
                                 <Col md={10}>
                                     <Control.text
+                                        className='form-control'
                                         name="firstname"
                                         model=".firstname"
                                         placeholder="First Name"
@@ -35,6 +36,7 @@ class Contact extends Component {
                                 <Label htmlFor="lastname" md={2}>Last Name</Label>
                                 <Col md={10}>
                                     <Control.text
+                                        className='form-control'
                                         name="lastname"
                                         model=".lastname"
                                         placeholder="Last Name"
@@ -45,6 +47,7 @@ class Contact extends Component {
                                 <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
                                 <Col md={10}>
                                     <Control.text
+                                        className='form-control'
                                         name="telnum"
                                         model=".telnum"
                                         placeholder="Tel. Number"
@@ -55,6 +58,7 @@ class Contact extends Component {
                                 <Label htmlFor="email" md={2}>Email</Label>
                                 <Col md={10}>
                                     <Control.text
+                                        className='form-control'
                                         model=".email"
                                         name="email"
                                         placeholder="Email"
@@ -66,6 +70,7 @@ class Contact extends Component {
                                     <FormGroup check>
                                         <Label check>
                                             <Control.checkbox
+                                                className='form-control-check'
                                                 name="agree"
                                                 model=".agree"
                                             />
@@ -76,6 +81,7 @@ class Contact extends Component {
                                 </Col>
                                 <Col md={{ size: 3, offset: 1 }}>
                                     <Control.select
+                                        className='form-control'
                                         name="contactType"
                                         model=".contactType"
                                     >
@@ -88,6 +94,7 @@ class Contact extends Component {
                                 <Label htmlFor="message" md={2}>Your Feedback</Label>
                                 <Col md={10}>
                                     <Control.textarea
+                                        className='form-control'
                                         model=".message"
                                         name="message"
                                         rows="12"
