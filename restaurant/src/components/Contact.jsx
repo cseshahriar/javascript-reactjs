@@ -70,7 +70,7 @@ class Contact extends Component {
                                         }}
                                     />
                                     <Errors className="text-danger" model=".telnum" 
-                                        show="touched" messages={{required: 'Required'}} />
+                                        show="touched" messages={{required: 'Required', isNumber: 'Number please'}} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
