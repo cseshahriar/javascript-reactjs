@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap'
 import {LocalForm, Control, Errors} from 'react-redux-form';
 
-
+// validation functions
+const required = val => val && val.length;
+const isNumber = val => !isNaN(Number(val));
+const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9._]+\.[A-Z]{2,4}$/i.test(val);
 class Contact extends Component {
     componentDidMount() {
         document.title = "Contact Page";
@@ -29,7 +32,12 @@ class Contact extends Component {
                                         name="firstname"
                                         model=".firstname"
                                         placeholder="First Name"
+                                        validators={{
+                                            required
+                                        }}
                                     />
+                                    <Errors className="text-danger" model=".firstname" 
+                                        show="touched" messages={{required: 'Required'}} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -40,7 +48,12 @@ class Contact extends Component {
                                         name="lastname"
                                         model=".lastname"
                                         placeholder="Last Name"
+                                        validators={{
+                                            required
+                                        }}
                                     />
+                                    <Errors className="text-danger" model=".lastname" 
+                                        show="touched" messages={{required: 'Required'}} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -51,7 +64,13 @@ class Contact extends Component {
                                         name="telnum"
                                         model=".telnum"
                                         placeholder="Tel. Number"
+                                        validators={{
+                                            required,
+                                            isNumber
+                                        }}
                                     />
+                                    <Errors className="text-danger" model=".telnum" 
+                                        show="touched" messages={{required: 'Required'}} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -62,7 +81,13 @@ class Contact extends Component {
                                         model=".email"
                                         name="email"
                                         placeholder="Email"
+                                        validators={{
+                                            required,
+                                            validEmail
+                                        }}
                                     />
+                                    <Errors className="text-danger" model=".email" 
+                                        show="touched" messages={{required: 'Required', validEmail: 'Invalid email'}} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -74,6 +99,7 @@ class Contact extends Component {
                                                 name="agree"
                                                 model=".agree"
                                             />
+                                    
                                             <strong>May we contact you?
                                             </strong>
                                         </Label>
@@ -98,7 +124,10 @@ class Contact extends Component {
                                         model=".message"
                                         name="message"
                                         rows="12"
+                                        validators={{required}}
                                     />
+                                     <Errors className="text-danger" model=".message" 
+                                        show="touched" messages={{required: 'Required'}} />
                                 </Col>
                             </FormGroup>
                             <FormGroup>
