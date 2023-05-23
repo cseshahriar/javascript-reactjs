@@ -19,7 +19,6 @@ const commentReducer = (commentState = COMMENTS, action) => {
             let comment = action.payload;
             comment.id = commentState.length;
             comment.date = new Date().toDateString();
-            console.log(comment);
             return commentState.concat(comment);
 
         default:

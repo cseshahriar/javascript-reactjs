@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardGroup, Card, CardImg, CardImgOverlay, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardBody, CardTitle } from 'reactstrap';
 
 const MenuItem = props => {
 

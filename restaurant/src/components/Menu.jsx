@@ -3,7 +3,7 @@ import DISHES from '../data/dishes.js';
 import COMMENTS from '../data/comments.js';
 import MenuItem from './MenuItem';
 import DishDetail from './DishDetail';
-import { CardColumns, CardGroup, Card, Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
 import { connect } from "react-redux";
 import * as actionTypes from "../redux/actionTypes";
 import * as actionCreate from '../redux/actionCreator';
