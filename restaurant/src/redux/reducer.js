@@ -6,12 +6,36 @@ import * as actionTypes from './actionTypes';
 
 
 // state, action
-const dishReducer = (dishState = DISHES, action) => {
+const dishReducer = (
+    dishState = { isLoading: false, dishes: [], errMess: null }, action
+) => {
     switch (action.type) {
+        case actionTypes.DISHES_LOADING:
+            return {
+                ...dishState,
+                isLoading: true,
+                errMess: null,
+                dishes: []
+            }
+        case actionTypes.LOAD_DISHES:
+            return {
+                ...dishState,
+                isLoading: false,
+                errMess: null,
+                dishes: action.payload
+            }
+        case actionTypes.DISHES_FAILED:
+            return {
+                ...dishState,
+                isLoading: false,
+                errMess: action.payload,
+                dishes: []
+            }
         default:
-            return dishState; // return dish data
+            return dishState;
     }
 }
+
 
 const commentReducer = (commentState = COMMENTS, action) => {
     switch (action.type) {
